@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto Educacional - Relatório Fotográfico</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                blue: "#0056b3",
+                green: "#28a745",
+                light: "#f8f9fa",
+              },
+            },
+            fontFamily: {
+              sans: ["Open Sans", "sans-serif"],
+              heading: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Estilo para esconder a barra de rolagem mas manter a funcionalidade */
+      .hide-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Efeito de zoom na galeria */
+      .gallery-thumb {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .gallery-thumb:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 font-sans text-gray-700">
+    <!-- 1. HEADER COM 3 ÍCONES/LOGOS E NOME -->
+    <header class="bg-white shadow-sm py-6">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <!-- Logos Esquerda -->
+        <div class="flex items-center gap-6 text-brand-blue text-4xl">
+          <i class="fa-solid fa-graduation-cap" title="Logo Instituição 1"></i>
+          <i class="fa-solid fa-school" title="Logo Instituição 2"></i>
+          <i class="fa-solid fa-book-open" title="Logo Instituição 3"></i>
+        </div>
+
+        <!-- Nome do Projeto -->
+        <div class="text-center md:text-right">
+          <h1
+            class="font-heading font-bold text-xl md:text-2xl text-gray-800 uppercase tracking-wide"
+          >
+            Nome do Projeto Educacional
+          </h1>
+          <span class="text-sm text-brand-green font-semibold"
+            >Relatório Anual 2024</span
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. SECTION TÍTULO E SUBTÍTULO -->
+    <section class="bg-brand-blue text-white py-20 text-center">
+      <div class="container mx-auto px-6">
+        <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4">
+          Transformando a Educação
+        </h2>
+        <p
+          class="text-xl md:text-2xl font-light text-blue-100 max-w-3xl mx-auto"
+        >
+          Um olhar detalhado sobre as melhorias e impactos nas escolas da
+          região.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. SECTION TEXTO DESCREVENDO O PROJETO -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6 max-w-4xl">
+        <h3
+          class="font-heading text-2xl font-bold text-gray-800 mb-6 border-l-4 border-brand-green pl-4"
+        >
+          Sobre o Projeto
+        </h3>
+        <div class="prose prose-lg text-gray-600 space-y-4 text-justify">
+          <p>
+            Este projeto visa documentar e analisar as intervenções pedagógicas
+            e estruturais realizadas ao longo do último ano letivo. Através de
+            uma abordagem integrada, buscamos não apenas reformar espaços
+            físicos, mas também revitalizar a metodologia de ensino aplicada.
+          </p>
+          <p>
+            As imagens a seguir retratam o cotidiano, as atividades
+            extracurriculares e as melhorias nas instalações de seis unidades
+            escolares distintas. Cada galeria representa o esforço conjunto de
+            educadores, alunos e comunidade para construir um ambiente de
+            aprendizado mais acolhedor e eficiente.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CARROSSEL ESCOLA A (REPLICADO 6 VEZES) -->
+
+    <!-- ESCOLA A -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+      <div class="container mx-auto px-6">
+        <h3 class="font-heading text-2xl font-bold text-brand-blue mb-2">
+          Escola Municipal Modelo A
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Bairro Central - Atividades de Artes e Recreação
+        </p>
+
+        <!-- Container Carrossel -->
+        <div class="relative group">
+          <!-- Botão Scroll Esquerda -->
+          <button
+            onclick="scrollGallery('gallery-a', -300)"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100 focus:outline-none"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <!-- Lista de Imagens (Horizontal Scroll) -->
+          <div
+            id="gallery-a"
+            class="flex gap-4 overflow-x-auto hide-scroll py-4 scroll-smooth"
+          >
+            <!-- Gerando 15 imagens via JS para exemplo, mas no real seriam tags <img> -->
+            <!-- Placeholder imagens -->
+            <script>
+              for (let i = 1; i <= 15; i++) {
+                document.write(`
+                                <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 cursor-pointer gallery-thumb rounded-lg overflow-hidden shadow-sm" onclick="openModal('https://placehold.co/800x600?text=Escola+A+-+Foto+${i}')">
+                                    <img src="https://placehold.co/200x200?text=Foto+${i}" alt="Foto ${i}" class="w-full h-full object-cover">
+                                </div>
+                            `);
+              }
+            </script>
+          </div>
+
+          <!-- Botão Scroll Direita -->
+          <button
+            onclick="scrollGallery('gallery-a', 300)"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100 focus:outline-none"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCOLA B -->
+    <section class="py-12 bg-white border-t border-gray-200">
+      <div class="container mx-auto px-6">
+        <h3 class="font-heading text-2xl font-bold text-brand-green mb-2">
+          Colégio Estadual Integração B
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Zona Norte - Laboratório de Ciências
+        </p>
+
+        <div class="relative group">
+          <button
+            onclick="scrollGallery('gallery-b', -300)"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div
+            id="gallery-b"
+            class="flex gap-4 overflow-x-auto hide-scroll py-4 scroll-smooth"
+          >
+            <script>
+              for (let i = 1; i <= 15; i++) {
+                document.write(`
+                                <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 cursor-pointer gallery-thumb rounded-lg overflow-hidden shadow-sm" onclick="openModal('https://placehold.co/800x600/28a745/white?text=Escola+B+-+Foto+${i}')">
+                                    <img src="https://placehold.co/200x200/28a745/white?text=Foto+${i}" alt="Foto ${i}" class="w-full h-full object-cover">
+                                </div>
+                            `);
+              }
+            </script>
+          </div>
+
+          <button
+            onclick="scrollGallery('gallery-b', 300)"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCOLA C -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+      <div class="container mx-auto px-6">
+        <h3 class="font-heading text-2xl font-bold text-brand-blue mb-2">
+          Escola Jardim do Saber C
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Educação Infantil - Atividades Lúdicas
+        </p>
+        <div class="relative group">
+          <button
+            onclick="scrollGallery('gallery-c', -300)"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div
+            id="gallery-c"
+            class="flex gap-4 overflow-x-auto hide-scroll py-4 scroll-smooth"
+          >
+            <script>
+              for (let i = 1; i <= 15; i++) {
+                document.write(
+                  `<div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 cursor-pointer gallery-thumb rounded-lg overflow-hidden shadow-sm" onclick="openModal('https://placehold.co/800x600/0056b3/white?text=Escola+C+-+Foto+${i}')"><img src="https://placehold.co/200x200/0056b3/white?text=Foto+${i}" class="w-full h-full object-cover"></div>`
+                );
+              }
+            </script>
+          </div>
+          <button
+            onclick="scrollGallery('gallery-c', 300)"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCOLA D -->
+    <section class="py-12 bg-white border-t border-gray-200">
+      <div class="container mx-auto px-6">
+        <h3 class="font-heading text-2xl font-bold text-brand-green mb-2">
+          Instituto Técnico D
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Ensino Médio e Técnico - Robótica
+        </p>
+        <div class="relative group">
+          <button
+            onclick="scrollGallery('gallery-d', -300)"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div
+            id="gallery-d"
+            class="flex gap-4 overflow-x-auto hide-scroll py-4 scroll-smooth"
+          >
+            <script>
+              for (let i = 1; i <= 15; i++) {
+                document.write(
+                  `<div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 cursor-pointer gallery-thumb rounded-lg overflow-hidden shadow-sm" onclick="openModal('https://placehold.co/800x600/6610f2/white?text=Escola+D+-+Foto+${i}')"><img src="https://placehold.co/200x200/6610f2/white?text=Foto+${i}" class="w-full h-full object-cover"></div>`
+                );
+              }
+            </script>
+          </div>
+          <button
+            onclick="scrollGallery('gallery-d', 300)"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCOLA E -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+      <div class="container mx-auto px-6">
+        <h3 class="font-heading text-2xl font-bold text-brand-blue mb-2">
+          Escola Comunitária E
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">Zona Rural - Horta Comunitária</p>
+        <div class="relative group">
+          <button
+            onclick="scrollGallery('gallery-e', -300)"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div
+            id="gallery-e"
+            class="flex gap-4 overflow-x-auto hide-scroll py-4 scroll-smooth"
+          >
+            <script>
+              for (let i = 1; i <= 15; i++) {
+                document.write(
+                  `<div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 cursor-pointer gallery-thumb rounded-lg overflow-hidden shadow-sm" onclick="openModal('https://placehold.co/800x600/e83e8c/white?text=Escola+E+-+Foto+${i}')"><img src="https://placehold.co/200x200/e83e8c/white?text=Foto+${i}" class="w-full h-full object-cover"></div>`
+                );
+              }
+            </script>
+          </div>
+          <button
+            onclick="scrollGallery('gallery-e', 300)"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESCOLA F -->
+    <section class="py-12 bg-white border-t border-gray-200">
+      <div class="container mx-auto px-6">
+        <h3 class="font-heading text-2xl font-bold text-brand-green mb-2">
+          Centro de Educação Infantil F
+        </h3>
+        <p class="text-sm text-gray-500 mb-6">Centro - Evento de Formatura</p>
+        <div class="relative group">
+          <button
+            onclick="scrollGallery('gallery-f', -300)"
+            class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div
+            id="gallery-f"
+            class="flex gap-4 overflow-x-auto hide-scroll py-4 scroll-smooth"
+          >
+            <script>
+              for (let i = 1; i <= 15; i++) {
+                document.write(
+                  `<div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 cursor-pointer gallery-thumb rounded-lg overflow-hidden shadow-sm" onclick="openModal('https://placehold.co/800x600/fd7e14/white?text=Escola+F+-+Foto+${i}')"><img src="https://placehold.co/200x200/fd7e14/white?text=Foto+${i}" class="w-full h-full object-cover"></div>`
+                );
+              }
+            </script>
+          </div>
+          <button
+            onclick="scrollGallery('gallery-f', 300)"
+            class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition opacity-0 group-hover:opacity-100"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SECTION AGRADECIMENTOS -->
+    <section class="py-16 bg-brand-light">
+      <div class="container mx-auto px-6 max-w-4xl text-center">
+        <h3 class="font-heading text-2xl font-bold text-gray-800 mb-6">
+          Agradecimentos
+        </h3>
+        <p class="text-gray-600 mb-8 leading-relaxed italic">
+          "A educação não transforma o mundo. Educação muda as pessoas. Pessoas
+          transformam o mundo." <br />
+          Agradecemos imensamente a todos os diretores, coordenadores,
+          professores e alunos que tornaram este projeto possível. Seu empenho e
+          dedicação são a base do nosso sucesso. Um agradecimento especial
+          também à Secretaria de Educação pelo suporte contínuo.
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. SECTION AUTORA -->
+    <section class="py-12 bg-white border-t border-gray-200">
+      <div class="container mx-auto px-6 max-w-2xl text-center">
+        <div class="flex flex-col items-center">
+          <!-- Ícone Foto de Perfil -->
+          <div
+            class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-4 border-4 border-brand-green overflow-hidden"
+          >
+            <i class="fa-solid fa-user text-4xl text-gray-400"></i>
+            <!-- Se tiver foto real, use: <img src="url_da_foto.jpg" class="w-full h-full object-cover"> -->
+          </div>
+
+          <h4 class="font-heading text-xl font-bold text-gray-800">
+            Maria da Silva
+          </h4>
+          <p
+            class="text-brand-blue font-semibold text-sm uppercase tracking-wider mb-4"
+          >
+            Coordenadora do Projeto
+          </p>
+
+          <!-- Assinatura (Simulada com fonte cursiva ou imagem) -->
+          <div class="text-gray-500 font-serif italic text-2xl">
+            Maria da Silva
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="bg-gray-900 text-white py-8">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <div class="text-sm font-light">
+          <strong class="block text-lg font-heading mb-1"
+            >Nome do Projeto Educacional</strong
+          >
+          &copy; 2024 Todos os direitos reservados.
+        </div>
+        <div class="text-xs text-gray-500">
+          Desenvolvido para fins educacionais.
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODAL LIGHTBOX (Para visualizar imagens grandes) -->
+    <div
+      id="imageModal"
+      class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 flex items-center justify-center p-4"
+      onclick="closeModal()"
+    >
+      <span
+        class="absolute top-4 right-4 text-white text-4xl cursor-pointer hover:text-gray-300"
+        >&times;</span
+      >
+      <img
+        id="modalImage"
+        src=""
+        alt="Imagem Ampliada"
+        class="max-w-full max-h-screen rounded shadow-2xl"
+      />
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+      // Função para rolar o carrossel horizontalmente
+      function scrollGallery(elementId, distance) {
+        const container = document.getElementById(elementId);
+        container.scrollBy({
+          left: distance,
+          behavior: "smooth",
+        });
+      }
+
+      // Função para abrir o Modal com a imagem
+      function openModal(imageSrc) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+
+        modalImg.src = imageSrc;
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Impede rolagem do fundo
+      }
+
+      // Função para fechar o Modal
+      function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto"; // Libera rolagem
+      }
+
+      // Fechar modal com tecla ESC
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
